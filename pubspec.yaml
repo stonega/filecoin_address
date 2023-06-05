@@ -1,6 +1,6 @@
 name: filecoin_address
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
+description: Filecoin address utils.
+version: 1.1.0
 repository: https://github.com/stonega/filecoin_address
 
 environment:

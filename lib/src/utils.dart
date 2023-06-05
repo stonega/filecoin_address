@@ -1,12 +1,18 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:typed_data';
 import 'package:base32/base32.dart';
 import 'package:hashlib/hashlib.dart';
 
-Uint8List getChecksum(Uint8List payload) {
+Uint8List getChecksumForPayload(Uint8List payload) {
   final blake2b = Blake2b(4);
   final sink = blake2b.createSink();
   sink.add(payload);
   return sink.digest().buffer.asUint8List();
+}
+
+bool validateNetworkPrefix(String networkPrefix) {
+  return ['f', 't'].contains(networkPrefix);
 }
 
 Uint8List hexToUint8List(String hexString) {
@@ -18,20 +24,20 @@ Uint8List hexToUint8List(String hexString) {
 }
 
 String listToHex(List<int> bytes) {
-    StringBuffer buffer = StringBuffer();
-    for (int part in bytes) {
-      if (part & 0xff != part) {
-        throw FormatException("Non-byte integer detected");
-      }
-      buffer.write('${part < 16 ? '0' : ''}${part.toRadixString(16)}');
+  StringBuffer buffer = StringBuffer();
+  for (int part in bytes) {
+    if (part & 0xff != part) {
+      throw FormatException("Non-byte integer detected");
     }
-    return buffer.toString();
+    buffer.write('${part < 16 ? '0' : ''}${part.toRadixString(16)}');
   }
+  return buffer.toString();
+}
 
 String base32Encode(Uint8List input) {
-  final encoded = base32.encode(input);
-  if (encoded.endsWith('=')) {
-    return encoded.substring(0, encoded.length - 1);
+  var encoded = base32.encode(input);
+  while (encoded.endsWith('=')) {
+    encoded = encoded.substring(0, encoded.length - 1);
   }
   return encoded;
 }
