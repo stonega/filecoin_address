@@ -1,12 +1,13 @@
-// ignore_for_file: constant_identifier_names
-import 'package:base32/base32.dart';
 import 'dart:typed_data';
-import './utils.dart';
+
+import 'package:base32/base32.dart';
 import 'package:leb128/leb128.dart';
 
+import 'utils.dart';
 import 'constant.dart';
 import 'error.dart';
 
+// ignore: constant_identifier_names
 enum ProtocolIndicator { ID, SECP256K1, ACTOR, BLS, DELEGATED }
 
 class Address {

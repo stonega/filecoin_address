@@ -1,13 +1,10 @@
 name: filecoin_address
-description: Filecoin address utils.
+description: Filecoin address utils, suport all address types.
 version: 1.1.0
 repository: https://github.com/stonega/filecoin_address
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
-
-# dependencies:
-#   path: ^1.8.0
+  sdk: '>=2.19.6 <4.0.0'
 
 dev_dependencies:
   lints: ^2.0.0
